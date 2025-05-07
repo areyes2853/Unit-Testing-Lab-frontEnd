@@ -42,6 +42,17 @@ describe('TodoList component', () => {
     expect(about).toBeInTheDocument();
   })
 
+  test('Testing if the todolist get items closeed out after completing a task', ()=>{
+    const app = render(<TodoList />);
+    const button = app.getByPlaceholderText('Add a new task...');
+    fireEvent.change(button, { target: { value: 'task' } });
+    fireEvent.click(app.getByText('Add'));
+    const about = app.getByText('task');
+    fireEvent.click(about);
+    expect(about).toBeInTheDocument('text-decoration: line-through text-gray-500');
+    
+  })
+
   test('clicking Delete removes the list item', ()=>{
     const app = render(<TodoList />);
     const button = app.getByPlaceholderText('Add a new task...');
@@ -54,4 +65,8 @@ describe('TodoList component', () => {
     const about2 = app.queryByText('poo');
     expect(about2).not.toBeInTheDocument();
   })
+
+
+
+
 });
