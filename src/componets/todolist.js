@@ -54,8 +54,7 @@ function TodoList() {
             <button
               onClick={() => deleteTask(index)}
               className="ml-4 p-1 bg-red-500 text-white rounded hover:bg-red-600"
-            >
-              Delete
+            >Delete
             </button>
           </li>
         ))}

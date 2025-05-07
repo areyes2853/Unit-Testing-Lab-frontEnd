@@ -3,38 +3,55 @@ import App from './App';
 import TodoList from './componets/todolist';
 
 
-test('Checking if App.js file has a Todo list', () => {
-	const app = render(<App />);
-	const about = app.getByText('Todo List');
-	expect(about).toBeInTheDocument();
+describe('App component', () => {
+  
+  test('Checking if App.js file has a Todo list', () => {
+    const app = render(<App />);
+    const about = app.getByText('Todo List');
+    expect(about).toBeInTheDocument();
+  });
+})
+
+
+
+
+
+describe('TodoList component', () => {
+  let input;
+
+  test('Checking if todolist is called todolist', () => {
+    const app = render(<TodoList />);
+    const heading = app.getByRole('heading'); 
+    expect(heading).toBeInTheDocument("Todo List");
+  });
+
+  test('Check if the input add a new task exits', ()=>{
+    const app = render(<TodoList />);
+    const about = app.getByPlaceholderText('Add a new task...');
+    expect(about).toBeInTheDocument();
+  })
+
+
+
+  test('typing and clicking Add creates a new list item', ()=>{
+    const app = render(<TodoList />);
+    const button = app.getByPlaceholderText('Add a new task...');
+    fireEvent.change(button, { target: { value: 'foo' } });
+    fireEvent.click(app.getByText('Add'));
+    const about = app.queryByText('foo');
+    expect(about).toBeInTheDocument();
+  })
+
+  test('clicking Delete removes the list item', ()=>{
+    const app = render(<TodoList />);
+    const button = app.getByPlaceholderText('Add a new task...');
+    fireEvent.change(button, { target: { value: 'poo' } });
+    fireEvent.click(app.getByText('Add'));
+    const about = app.getByText('poo');
+    expect(about).toBeInTheDocument();
+    const deleteButton = app.getByText('Delete');
+    fireEvent.click(deleteButton);
+    const about2 = app.queryByText('poo');
+    expect(about2).not.toBeInTheDocument();
+  })
 });
-
-test('Check if the input add a new task exits', ()=>{
-  const app = render(<TodoList />);
-  const about = app.getByPlaceholderText('Add a new task...');
-  expect(about).toBeInTheDocument();
-})
-
-test('Checking if todolist is called todolist', () => {
-  const app = render(<TodoList />);
-  const heading = app.getByRole('heading'); 
-  expect(heading).toBeInTheDocument("Todo List");
-});
-
-test('Checks if the add button is in the app', ()=>{
-  const app = render(<TodoList />);
-  const button = app.getByText('Add');
-  fireEvent.change(input, { target: { value: 'foo' } });
-  fireEvent.click(button);
-  const about = app.queryByText({task: 'Add'});
-  expect(app.getByText('foo')).toBeInTheDocument();
-})
-
-test('Check if the delete button is in the app', ()=>{
-  const app = render(<TodoList />);
-  const button = app.getByText('Delete');
-  fireEvent.change(input, { target: { value: 'poo' } });
-  fireEvent.click(button.getByText('Delete'));
-  const about = app.getByText('Delete');
-  expect(app.queryByText('poo')).not.toBeInTheDocument();
-})
