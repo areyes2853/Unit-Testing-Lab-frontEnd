@@ -1,8 +1,4 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 
@@ -68,3 +64,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# Unit-Testing-Lab-frontEnd
+Unit Testing Lab frontEnd
+To get the backend of this app, look for this on GitHub https://github.com/areyes2853/Unit-Testing-Labbackend
+>>>>>>> cb15a124d13fbc448bc2d04f9317cc770f1552d9
