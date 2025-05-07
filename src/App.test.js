@@ -5,7 +5,7 @@ import TodoList from './componets/todolist';
 
 describe('App component', () => {
   
-  test('Checking if App.js file has a Todo list', () => {
+  test('Checking if App.js file has a Todo list tag', () => {
     const app = render(<App />);
     const about = app.getByText('Todo List');
     expect(about).toBeInTheDocument();
@@ -19,13 +19,13 @@ describe('App component', () => {
 describe('TodoList component', () => {
   let input;
 
-  test('Checking if todolist is called todolist', () => {
+  test('Checking if todolist is called Todo List', () => {
     const app = render(<TodoList />);
     const heading = app.getByRole('heading'); 
     expect(heading).toBeInTheDocument("Todo List");
   });
 
-  test('Check if the input add a new task exits', ()=>{
+  test('Check if the Todo List has an input to add a new task', ()=>{
     const app = render(<TodoList />);
     const about = app.getByPlaceholderText('Add a new task...');
     expect(about).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('TodoList component', () => {
 
 
 
-  test('typing and clicking Add creates a new list item', ()=>{
+  test('Check if typing and clicking Add creates a new list item', ()=>{
     const app = render(<TodoList />);
     const button = app.getByPlaceholderText('Add a new task...');
     fireEvent.change(button, { target: { value: 'foo' } });
@@ -42,7 +42,7 @@ describe('TodoList component', () => {
     expect(about).toBeInTheDocument();
   })
 
-  test('Testing if the todolist get items closeed out after completing a task', ()=>{
+  test('Testing if the todo list gets items crossed out after completing a task', ()=>{
     const app = render(<TodoList />);
     const button = app.getByPlaceholderText('Add a new task...');
     fireEvent.change(button, { target: { value: 'task' } });
@@ -53,7 +53,7 @@ describe('TodoList component', () => {
     
   })
 
-  test('clicking Delete removes the list item', ()=>{
+  test('Cheking if clicking Delete removes the list item', ()=>{
     const app = render(<TodoList />);
     const button = app.getByPlaceholderText('Add a new task...');
     fireEvent.change(button, { target: { value: 'poo' } });
